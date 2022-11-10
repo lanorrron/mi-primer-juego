@@ -10,11 +10,13 @@ import android.icu.text.CaseMap;
 import android.media.Image;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.telecom.VideoProfile;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 public class MainActivity2 extends AppCompatActivity {
     int puntosPlayer = 0;
@@ -30,6 +32,9 @@ public class MainActivity2 extends AppCompatActivity {
     ImageView ImageEnemy;
     int repetido;
     MediaPlayer mp3;
+    MediaPlayer temMp3;
+    MediaPlayer winner;
+    MediaPlayer gameOver;
 
 
     @Override
@@ -41,14 +46,23 @@ public class MainActivity2 extends AppCompatActivity {
         Empate = findViewById(R.id.Empate);
         ImagePlayer = findViewById(R.id.IconPlayer);
         ImageEnemy = findViewById(R.id.IconEnemy);
+
+        System.out.println(ImageEnemy.getDrawable());
+        System.out.println(ImageEnemy.getResources());
+
         mp3 = MediaPlayer.create(MainActivity2.this, R.raw.aa);
         mp3.start();
+        temMp3=MediaPlayer.create(MainActivity2.this,R.raw.yah);
+        winner= MediaPlayer.create(MainActivity2.this,R.raw.winner);
+        gameOver=MediaPlayer.create(MainActivity2.this,R.raw.gameover);
+
 
 
         btnPiedra = findViewById(R.id.Piedra);
         btnPiedra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                temMp3.start();
                 player = 0;
                 ImagePlayer.setImageResource(R.drawable.piedra);
                 clearEmpate();
@@ -60,6 +74,7 @@ public class MainActivity2 extends AppCompatActivity {
         btnPapel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                temMp3.start();
                 player = 1;
                 ImagePlayer.setImageResource(R.drawable.pepel);
                 clearEmpate();
@@ -74,6 +89,7 @@ public class MainActivity2 extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
+                temMp3.start();
                 player = 2;
                 ImagePlayer.setImageResource(R.drawable.tijerablue);
                 clearEmpate();
@@ -126,11 +142,13 @@ public class MainActivity2 extends AppCompatActivity {
         if (puntosPlayer == 3) {
             Empate.setText("Ganaste");
             showAlertDialog("Ganaste");
+            winner.start();
         }
 
         if (puntosMaquina == 3) {
             Empate.setText("Perdiste");
             showAlertDialog("Perdiste");
+            gameOver.start();
         }
 
         repetido = enemy;
@@ -161,7 +179,7 @@ public class MainActivity2 extends AppCompatActivity {
 
     public void showAlertDialog(String title) {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setMessage("quieres volver a jugar?");
+        alert.setMessage("Quieres volver a jugar?");
         alert.setTitle(title);
         alert.setCancelable(false);
         alert.setPositiveButton("yes", new DialogInterface.OnClickListener() {
@@ -175,6 +193,12 @@ public class MainActivity2 extends AppCompatActivity {
                 puntosPlayer = 0;
                 PuntosMaquina.setText(String.valueOf(puntosMaquina));
                 PuntosPlayer.setText(String.valueOf(puntosPlayer));
+                clearEmpate();
+                ImagePlayer.setImageDrawable(null);
+                ImageEnemy.setImageDrawable(null);
+
+
+
 
 
             }
@@ -184,7 +208,8 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Toast.makeText(MainActivity2.this, "Vuelve pronto", Toast.LENGTH_SHORT).show();
-                finish();
+                MainActivity2.this.finish();
+
                 mp3.stop();
             }
         });

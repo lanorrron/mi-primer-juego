@@ -4,19 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ppt"
+    android:background="@drawable/imagen4"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="335dp"
+        android:layout_height="348dp"
+        app:srcCompat="@drawable/oficial" />
     <Button
         android:id="@+id/jugar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/teal_700"
-        android:text="jugar"
-        android:textColor="@color/black"
+        android:backgroundTint="@color/red"
+        android:text="Jugar"
+        android:textColor="@color/white"
 
 
         />
