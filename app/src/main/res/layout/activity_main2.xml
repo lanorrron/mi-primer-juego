@@ -121,6 +121,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="Piedra"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/purple_500"
         app:layout_constraintBottom_toTopOf="@+id/Papel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -131,6 +133,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="Papel"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/purple_500"
         app:layout_constraintBottom_toTopOf="@+id/Tijera"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -141,6 +145,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:text="Tijera"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/purple_500"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
